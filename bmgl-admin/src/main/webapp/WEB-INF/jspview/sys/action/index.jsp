@@ -42,7 +42,7 @@
 									<th>操作</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody >
 							</tbody>
 						</table>
 					</div>
@@ -143,6 +143,28 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	<div id='_showtable'  >
+		<div class="ibox-content" >
+			<div class="row">
+				<div class="col-sm-12 b-r">
+						<table class='table table-bordered'>
+							<thead>
+								<tr>
+									<td>姓名</td>
+									<td>学号</td>
+									<td>报名日期</td>
+								</tr>
+							</thead>
+							<tbody id='showtable_body'>
+							</tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
     var table=null;
     
@@ -179,7 +201,26 @@
     			 layer.closeAll() ;
     		});
      }
-    
+    function fun_tatable(id){
+    	$.ajax({
+	 		   url:  $.common.getContextPath() + "/sys/action/signs?id="+id,
+	 		   success: function(msg){
+	 		     if(msg.code==1){
+	 		    	 $("#showtable_body").empty();
+	 		    	 for(i=0;i<msg.datas.length;i++)
+	 		    		$("#showtable_body").append("<tr><td>"+msg.datas[i].user.chinesename+"</td><td>"+msg.datas[i].user.tel+"</td><td>"+msg.datas[i].signDate+"</td></tr>");
+	 		    	layer.open({
+	 					  type: 1,
+	 					  skin: 'layui-layer-rim', //加上边框
+	 					  content: $("#_showtable"),
+	 					  area: "800px"
+	 					});
+	 		     }
+	 		   }
+	 	});
+    	
+    	
+    }
     function fun_update(id){
     	$.ajax({
  		   url:  $.common.getContextPath() + "/sys/food/get?id="+id,
@@ -267,7 +308,7 @@
 				                {
 				                    "render": function ( data, type, row ) {
 				                        return "<a tager='_blank' href='javascript:void(0)' onclick='fun_delete("+data+")'>删除 </a>"+
-				                        "<a tager='_blank' href='javascript:void(0)' onclick='fun_update("+data+")'>报名情况 </a>";
+				                        "<a tager='_blank' href='javascript:void(0)' onclick='fun_tatable("+data+")'>报名情况 </a>";
 				                    },
 				                    "targets":9
 				                }

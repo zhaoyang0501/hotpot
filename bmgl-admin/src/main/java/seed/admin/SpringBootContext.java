@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 /***
- * @author 263608237@qq.com
  *tomcat 启动类
  */
 @SpringBootApplication

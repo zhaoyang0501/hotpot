@@ -20,5 +20,8 @@ public class SignService extends SimpleCurdService<Sign, Long> {
 	public List<Sign> findByUser(User user){
 		return signRepository.findByUser(user);
 	}
+	public List<Sign> findByAction(Action action){
+		return signRepository.findByAction(action);
+	}
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import seed.common.dto.json.ObjectResponse;
 import seed.common.dto.json.Response;
 import seed.common.dto.json.SuccessResponse;
 import seed.common.web.AbstractBaseCURDController;
@@ -69,7 +70,12 @@ public class ActionController extends AbstractBaseCURDController<Action,Long>  {
 		return this.getBasePath()+"/myaction";
 	}
 	
-	
+
+	@RequestMapping("signs")
+	@ResponseBody
+	public Response signs(Long id) {
+		return new ObjectResponse(signtService.findByAction(this.simpleCurdService.find(id)));
+	}
 	
 	@RequestMapping("sign")
 	public String sign(Model model) {

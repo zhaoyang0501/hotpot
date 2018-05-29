@@ -22,6 +22,8 @@ public class Sign extends BaseEntity<Long> {
 	@OneToOne
 	private User user;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")  
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8") 
 	private Date signDate;
 	
 	@OneToOne
